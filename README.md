@@ -225,13 +225,13 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 ````
 
-### Step 9:  Run laravel project by this command
+### Step 10:  Run laravel project by this command
 
 ````
  php artisan serve
 
 ````
-### Step 10: Now Test Laravel REST API in Postman
+### Step 11: Now Test Laravel REST API in Postman
 
 ### Register Api
 
