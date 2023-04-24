@@ -189,6 +189,41 @@ Route::middleware('auth:api')->group(function () {
 
 Note: in this regiter and login route run without token but you see in get-user use  middelware for passport token
 
+### Step 9: Show error if not use token
+
+Navigate to app/Exception/Handler.php and open it and add this
+````
+<?php
+
+namespace App\Exceptions;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\JsonResponse;
+
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
+
+class Handler extends ExceptionHandler
+{
+   
+    protected $dontFlash = [
+        'password',
+        'password_confirmation',
+    ];
+
+
+    public function unauthenticated($request, AuthenticationException $exception)
+    {
+        return response()->json([
+            'error' => 'Unauthenticated.'
+        ], 401);
+    }
+}
+
+
+and then add login route with name it api.php
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+````
 
 ### Step 9:  Run laravel project by this command
 
